@@ -33,5 +33,6 @@ while True:
         hx.power_down()
         hx.power_up()
     data={"sensor":vals}
+    fb.addData(timestamp,data)
     print(data)
     time.sleep(0.1)
