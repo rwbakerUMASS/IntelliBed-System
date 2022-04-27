@@ -1,3 +1,4 @@
+from os import times
 import pyrebase
 
 class Firebase:
@@ -10,11 +11,12 @@ class Firebase:
     for key in self.db.get().val():
       self.db.child(key).remove()
 
-  def addData(self, timestamp, data):
+  def addFeatures(self, index, data, classification=None):
+    self.db.child("window").child(index).child('features').set(data) 
+    self.db.child("window").child(index).child('class').set(classification)
+  
+  def addData(self,timestamp, data):
+    timestamp=str(timestamp).replace(".","-")
     self.db.child("data").child(timestamp).set(data)
-  
-  def setBedWeight(self,weight):
-    self.db.child("bed_weight").set(weight)
-  
-  def setUserWeight(self,weight):
-    self.db.child("user_weight").set(weight)
+    
+
