@@ -5,10 +5,10 @@ from hx711 import HX711
 import time
 
 def calibrateSensors(sensors):
-    baseline = sensors[0].get_weight(10)
-    sensors[1].set_reference_unit(baseline/sensors[1].get_weight(10))
-    sensors[2].set_reference_unit(baseline/sensors[2].get_weight(10))
-    sensors[3].set_reference_unit(baseline/sensors[3].get_weight(10))
+    baseline = sensors[0].get_weight(5)
+    sensors[1].set_reference_unit(baseline/sensors[1].get_weight(5))
+    sensors[2].set_reference_unit(baseline/sensors[2].get_weight(5))
+    sensors[3].set_reference_unit(baseline/sensors[3].get_weight(5))
 
 config = {
   "apiKey": "AIzaSyBqmtDdXcCLp4ODEgtkelMj7QWEixxSVOY",
