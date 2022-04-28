@@ -27,6 +27,9 @@ config = {
   "databaseURL": "https://intelli--bed-default-rtdb.firebaseio.com/",
   "storageBucket": "intelli--bed.appspot.com"
 }
+
+GPIO.setwarnings(False)
+
 print("Initializing HX711s...")
 sensors = [HX711(20,21),HX711(12,16),HX711(17,27),HX711(5,6)]
 print("Setting HX711 Reading Format...")
@@ -34,13 +37,12 @@ for hx in sensors:
     hx.set_reading_format("MSB", "MSB")
     hx.reset()
     hx.tare()
-calibrateSensors(sensors,10)
-
+calibrateSensors(sensors,5)
 fb = Firebase(config)
-
-classification = input("Input activity")
-
-
+clear = input("Clear Firebase? (y/n): ")
+if clear.lower()=='y':
+    fb.clearTable()
+classification = input("Input activity: ")
 while True:
     timestamp = time.time()
     vals = []
@@ -49,7 +51,7 @@ while True:
         hx.power_down()
         hx.power_up()
     data={"sensor":vals}
-    # fb.addData(timestamp,data)
+    fb.addData(timestamp,data)
     out = 'Data:'
     for value in vals:
         value = str(round(value,6))
