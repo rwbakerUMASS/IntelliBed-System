@@ -17,7 +17,7 @@ class Firebase:
   
   def addData(self, timestamp, data, classification=None):
     timestamp=str(timestamp).replace(".","-")
-    self.db.child("data").child(timestamp).child("data").set(data)
+    self.db.child("data").child(timestamp).set(data)
     self.db.child("data").child(timestamp).child("class").set(classification)
     
 
