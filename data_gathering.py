@@ -38,8 +38,7 @@ config = {
 sensors = [HX711(20,21),HX711(12,16),HX711(17,27),HX711(5,6)]
 print("Setting HX711 Reading Format...")
 for hx in sensors:
-    hx.set_reading_format("MSB", "MSB") 
-    hx.tare()
+    hx.set_reading_format("MSB", "MSB")
 calibrateSensors(sensors)
 for hx in sensors:
     hx.reset()
