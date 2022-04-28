@@ -7,7 +7,7 @@ import time
 def calibrateSensors(sensors,base):
     hx.set_reference_unit(1)
     baseline = sensors[0].get_weight(5)
-    sensors[0].set_referencr_unit(base)
+    sensors[0].set_reference_unit(base)
     sensors[1].set_reference_unit(base*baseline/sensors[1].get_weight(5))
     sensors[2].set_reference_unit(base*baseline/sensors[2].get_weight(5))
     sensors[3].set_reference_unit(base*baseline/sensors[3].get_weight(5))
