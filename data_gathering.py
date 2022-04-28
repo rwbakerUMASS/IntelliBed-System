@@ -54,6 +54,6 @@ while True:
     for value in vals:
         value = str(round(value,6))
         out=out+value+' '
-    print(data)
+    print(out)
     time.sleep(0.1)
 
