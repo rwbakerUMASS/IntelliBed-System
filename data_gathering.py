@@ -21,6 +21,7 @@ def findBase(hx,num_samples):
 
 
 def calibrateSensors(sensors):
+    input("Add weight to center of bed")
     base = findBase(sensors[0],10)
     baseline = sensors[0].get_weight(5)
     sensors[0].set_reference_unit(base)
@@ -39,6 +40,7 @@ sensors = [HX711(20,21),HX711(12,16),HX711(17,27),HX711(5,6)]
 print("Setting HX711 Reading Format...")
 for hx in sensors:
     hx.set_reading_format("MSB", "MSB")
+    hx.tare()
 calibrateSensors(sensors)
 for hx in sensors:
     hx.reset()
