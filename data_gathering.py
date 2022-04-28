@@ -4,11 +4,13 @@ import RPi.GPIO as GPIO
 from hx711 import HX711
 import time
 
-def calibrateSensors(sensors):
+def calibrateSensors(sensors,base):
+    hx.set_reference_unit(1)
     baseline = sensors[0].get_weight(5)
-    sensors[1].set_reference_unit(baseline/sensors[1].get_weight(5))
-    sensors[2].set_reference_unit(baseline/sensors[2].get_weight(5))
-    sensors[3].set_reference_unit(baseline/sensors[3].get_weight(5))
+    sensors[0].set_referencr_unit(base)
+    sensors[1].set_reference_unit(base*baseline/sensors[1].get_weight(5))
+    sensors[2].set_reference_unit(base*baseline/sensors[2].get_weight(5))
+    sensors[3].set_reference_unit(base*baseline/sensors[3].get_weight(5))
 
 config = {
   "apiKey": "AIzaSyBqmtDdXcCLp4ODEgtkelMj7QWEixxSVOY",
@@ -20,8 +22,7 @@ config = {
 sensors = [HX711(20,21),HX711(12,16),HX711(17,27),HX711(5,6)]
 for hx in sensors:
     hx.set_reading_format("MSB", "MSB") 
-    hx.set_reference_unit(1)
-calibrateSensors(sensors)
+calibrateSensors(sensors,42000)
 for hx in sensors:
     hx.reset()
     hx.tare()
