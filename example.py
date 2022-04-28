@@ -21,7 +21,12 @@ def cleanAndExit():
     print("Bye!")
     sys.exit()
 
-hx = HX711(12, 16)
+dout = input("dout:")
+clk = input("clk:")
+
+hx = HX711(dout, clk)
+
+sensors = [HX711(20,21),HX711(12,16),HX711(17,27),HX711(5,6)]
 
 # I've found out that, for some reason, the order of the bytes is not always the same between versions of python, numpy and the hx711 itself.
 # Still need to figure out why does it change.
