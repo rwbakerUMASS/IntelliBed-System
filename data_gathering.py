@@ -7,7 +7,7 @@ import numpy as np
 
 def findBase(sensor,num_samples):
     vals=[]
-    print("Finding Base Scalar:")
+    print("Finding Base Scalar...")
     hx.set_reference_unit(1)
     for i in range(num_samples):
         vals.append(hx.get_weight(5))
@@ -36,9 +36,10 @@ config = {
 }
 
 sensors = [HX711(20,21),HX711(12,16),HX711(17,27),HX711(5,6)]
+print("Setting HX711 Reading Format...")
 for hx in sensors:
     hx.set_reading_format("MSB", "MSB") 
-calibrateSensors(sensors,42000)
+calibrateSensors(sensors)
 for hx in sensors:
     hx.reset()
     hx.tare()
