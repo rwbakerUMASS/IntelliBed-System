@@ -1,7 +1,7 @@
+print("Loading Libraries...")
 from hx711 import HX711
 from firebase import Firebase
 import RPi.GPIO as GPIO
-from hx711 import HX711
 import time
 import numpy as np
 
