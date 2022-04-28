@@ -21,7 +21,7 @@ def findBase(sensor,num_samples):
 
 
 def calibrateSensors(sensors):
-    base = findBase(sensors[0],10)
+    base = 42000
     baseline = sensors[0].get_weight(5)
     sensors[0].set_reference_unit(base)
     sensors[1].set_reference_unit(base*baseline/sensors[1].get_weight(5))
