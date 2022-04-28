@@ -45,11 +45,15 @@ while True:
     timestamp = time.time()
     vals = []
     for hx in sensors:
-        vals.append(hx.get_weight(1))
+        vals.append(abs(hx.get_weight(1)))
         hx.power_down()
         hx.power_up()
     data={"sensor":vals}
     # fb.addData(timestamp,data)
+    out = 'Data:'
+    for value in vals:
+        value = str(round(value,6))
+        out=out+value+' '
     print(data)
     time.sleep(0.1)
 
