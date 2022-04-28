@@ -8,6 +8,8 @@ class Firebase:
     self.db = self.firebase.database()
 
   def clearTable(self):
+    if self.db.get().val() is None:
+      return
     for key in self.db.get().val():
       self.db.child(key).remove()
 
@@ -20,4 +22,11 @@ class Firebase:
     self.db.child("data").child(timestamp).set(data)
     self.db.child("data").child(timestamp).child("class").set(classification)
     
-
+if __name__ == "__main__":
+  print("FB")
+  fb = Firebase(config = {
+    "apiKey": "AIzaSyBqmtDdXcCLp4ODEgtkelMj7QWEixxSVOY",
+    "authDomain": "intelli--bed.firebaseapp.com",
+    "databaseURL": "https://intelli--bed-default-rtdb.firebaseio.com/",
+    "storageBucket": "intelli--bed.appspot.com"
+  })
