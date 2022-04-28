@@ -34,7 +34,7 @@ for hx in sensors:
     hx.set_reading_format("MSB", "MSB")
     hx.reset()
     hx.tare()
-calibrateSensors(sensors)
+calibrateSensors(sensors,10)
 
 fb = Firebase(config)
 
