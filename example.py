@@ -21,8 +21,8 @@ def cleanAndExit():
     print("Bye!")
     sys.exit()
 
-dout = input("dout:")
-clk = input("clk:")
+dout = int(input("dout:"))
+clk = int(input("clk:"))
 
 hx = HX711(dout, clk)
 
