@@ -62,7 +62,7 @@ while True:
     timestamp = time.time()
     vals = []
     for hx in sensors:
-        vals.append(hx.get_weight(1))
+        vals.append(max(0,hx.get_weight(1)))
         hx.power_down()
         hx.power_up()
     x,y = getXY(vals)
