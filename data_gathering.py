@@ -30,7 +30,6 @@ def calibrateSensors(sensors,num_samples):
             hx.power_down()
             hx.power_up()
             time.sleep(0.1)
-            print(vals[i])
         mean=np.mean(vals)
         print("Base = ",mean)
         hx.set_reference_unit(mean)
@@ -63,7 +62,7 @@ while True:
     timestamp = time.time()
     vals = []
     for hx in sensors:
-        vals.append(abs(hx.get_weight(1)))
+        vals.append(hx.get_weight(1))
         hx.power_down()
         hx.power_up()
     x,y = getXY(vals)
