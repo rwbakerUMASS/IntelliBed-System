@@ -22,7 +22,7 @@ class Firebase:
   
   def addData(self,data):
     for key in data:
-      self.db.child("data").child("key").set(data[key])
+      self.db.child("data").child(key).set(data[key])
     
 if __name__ == "__main__":
   print("FB")
