@@ -7,6 +7,7 @@ import time
 import numpy as np
 from plotXY import plot
 from firebase_config import CONFIG
+import json
 
 #   LAYOUT OF SENSORS
 #   yellow(3)   green(2)
