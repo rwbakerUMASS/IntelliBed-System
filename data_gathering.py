@@ -73,5 +73,5 @@ while True:
     # plot(x,y)
     print('X:',x,' y:',y)
 
-    time.sleep(0.1)
+    time.sleep(0.05)
 
