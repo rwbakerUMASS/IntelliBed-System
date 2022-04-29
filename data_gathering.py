@@ -64,20 +64,19 @@ classification = input("Input activity: ")
 data = {}
 
 while True:
-    timestamp=str(time.time()).replace(".","-")
-    vals = []
-    for hx in sensors:
-        vals.append(max(0,hx.get_weight(1)))
-        hx.power_down()
-        hx.power_up()
-    x,y = getXY(vals)
-    data[timestamp]={"class":classification,"data":{"sensor":vals,"X":x,"Y":y}}
-    # fb.addData(timestamp,data,classification)
-    # plot(x,y)
-    print('X:',x,' y:',y)
-    time.sleep(0.05)
     try:
-        pass
+        timestamp=str(time.time()).replace(".","-")
+        vals = []
+        for hx in sensors:
+            vals.append(max(0,hx.get_weight(1)))
+            hx.power_down()
+            hx.power_up()
+        x,y = getXY(vals)
+        data[timestamp]={"class":classification,"data":{"sensor":vals,"X":x,"Y":y}}
+        # fb.addData(timestamp,data,classification)
+        # plot(x,y)
+        print('X:',x,' y:',y)
+        time.sleep(0.05)
     except(KeyboardInterrupt):
         fb.addData(data)
         print("Data Collection Ended")
