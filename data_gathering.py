@@ -69,7 +69,7 @@ while True:
         hx.power_up()
     x,y = getXY(vals)
     data={"sensor":vals,"X":x,"Y":y}
-    fb.addData(timestamp,data,classification)
+    # fb.addData(timestamp,data,classification)
     # plot(x,y)
     print('X:',x,' y:',y)
 
