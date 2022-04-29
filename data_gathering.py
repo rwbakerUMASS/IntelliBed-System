@@ -1,9 +1,23 @@
 print("Loading Libraries...")
+from tkinter import Y
 from hx711 import HX711
 from firebase import Firebase
 import RPi.GPIO as GPIO
 import time
 import numpy as np
+from plotXY import plot
+
+#   LAYOUT OF SENSORS
+#   yellow(3)   green(2)
+#   red(1)      blue(0)
+
+def getXY(values):
+    #x=ratio of left and right
+    #y=ratio of top and bottom
+    total = np.sum(values)
+    x=(values[0]+values[2])/(total)
+    y=(values[2]+values[3])/(total)
+    return x,y
 
 def calibrateSensors(sensors,num_samples):
     input("Add weight to center of bed")
@@ -52,12 +66,9 @@ while True:
         vals.append(abs(hx.get_weight(1)))
         hx.power_down()
         hx.power_up()
-    data={"sensor":vals}
+    x,y = getXY(vals)
+    data={"sensor":vals,"X":x,"Y":y}
     fb.addData(timestamp,data,classification)
-    out = 'Data:'
-    for value in vals:
-        value = str(round(value,6))
-        out=out+value+' '
-    print(out)
+
     time.sleep(0.1)
 
