@@ -15,6 +15,8 @@ def getXY(values):
     #x=ratio of left and right
     #y=ratio of top and bottom
     total = np.sum(values)
+    #handle divide by 0
+    total += 1e-9
     x=(values[0]+values[2])/(total)
     y=(values[2]+values[3])/(total)
     return x,y
