@@ -6,6 +6,7 @@ import RPi.GPIO as GPIO
 import time
 import numpy as np
 from plotXY import plot
+from firebase_config import CONFIG
 
 #   LAYOUT OF SENSORS
 #   yellow(3)   green(2)
@@ -36,14 +37,7 @@ def calibrateSensors(sensors,num_samples):
         print("Base = ",mean)
         hx.set_reference_unit(mean)
 
-config = {
-  "apiKey": "AIzaSyBqmtDdXcCLp4ODEgtkelMj7QWEixxSVOY",
-  "authDomain": "intelli--bed.firebaseapp.com",
-  "databaseURL": "https://intelli--bed-default-rtdb.firebaseio.com/",
-  "storageBucket": "intelli--bed.appspot.com"
-}
-
-fb = Firebase(config)
+fb = Firebase(CONFIG())
 
 clear = input("Clear Firebase? (y/n): ")
 if clear.lower()=='y':
@@ -78,7 +72,9 @@ while True:
         print('X:',x,' y:',y)
         time.sleep(0.05)
     except(KeyboardInterrupt):
-        fb.addData(data)
-        print("Data Collection Ended")
+        print("\nData Collection Ended")
+        write = input("Write Data? (y/n):")
+        if write.lower()=='y':
+            fb.addData(data)
         break
 

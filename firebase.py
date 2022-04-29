@@ -13,12 +13,16 @@ class Firebase:
     for key in self.db.get().val():
       self.db.child(key).remove()
 
+  def getRawData(self):
+    return self.db.child('data').get().val()
+
   def addFeatures(self, index, data, classification=None):
     self.db.child("window").child(index).child('features').set(data) 
     self.db.child("window").child(index).child('class').set(classification)
   
   def addData(self,data):
-    self.db.child("data").set(data)
+    for key in data:
+      self.db.child("data").child("key").set(data[key])
     
 if __name__ == "__main__":
   print("FB")

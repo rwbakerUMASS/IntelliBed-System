@@ -1,13 +1,9 @@
 from hx711 import HX711
 from firebase import Firebase
 import time
+from firebase_config import CONFIG
 
-config = {
-  "apiKey": "AIzaSyBqmtDdXcCLp4ODEgtkelMj7QWEixxSVOY",
-  "authDomain": "intelli--bed.firebaseapp.com",
-  "databaseURL": "https://intelli--bed-default-rtdb.firebaseio.com/",
-  "storageBucket": "intelli--bed.appspot.com"
-}
+
 prevTime = time.time()
 features = {
   "mean":4,
@@ -21,7 +17,7 @@ data = {
   "y":0.3
 }
 classification=1
-fb = Firebase(config)
+fb = Firebase(CONFIG())
 fb.clearTable()
 fb.addFeatures(1,features,classification)
 fb.addData(prevTime,data)
