@@ -60,18 +60,26 @@ for hx in sensors:
     hx.tare()
 calibrateSensors(sensors,5)
 classification = input("Input activity: ")
+
+data = {}
+
 while True:
-    timestamp = time.time()
+    timestamp=str(time.time()).replace(".","-")
     vals = []
     for hx in sensors:
         vals.append(max(0,hx.get_weight(1)))
         hx.power_down()
         hx.power_up()
     x,y = getXY(vals)
-    data={"sensor":vals,"X":x,"Y":y}
+    data[timestamp]={"class":classification,"data":{"sensor":vals,"X":x,"Y":y}}
     # fb.addData(timestamp,data,classification)
     # plot(x,y)
     print('X:',x,' y:',y)
-
     time.sleep(0.05)
+    try:
+        pass
+    except(KeyboardInterrupt):
+        fb.addData(data)
+        print("Data Collection Ended")
+        break
 

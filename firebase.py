@@ -17,10 +17,9 @@ class Firebase:
     self.db.child("window").child(index).child('features').set(data) 
     self.db.child("window").child(index).child('class').set(classification)
   
-  def addData(self, timestamp, data, classification=None):
+  def addData(self,data):
     timestamp=str(timestamp).replace(".","-")
-    self.db.child("data").child(timestamp).set(data)
-    self.db.child("data").child(timestamp).child("class").set(classification)
+    self.db.child("data").set(data)
     
 if __name__ == "__main__":
   print("FB")
