@@ -69,6 +69,8 @@ while True:
     x,y = getXY(vals)
     data={"sensor":vals,"X":x,"Y":y}
     fb.addData(timestamp,data,classification)
+    plot(x,y)
+    print('X:',x,' y:',y)
 
     time.sleep(0.1)
 
