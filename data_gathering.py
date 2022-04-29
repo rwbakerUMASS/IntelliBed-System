@@ -23,9 +23,9 @@ def getXY(values):
 
 def calibrateSensors(sensors,num_samples):
     input("Add weight to center of bed")
+    print("Finding Base Scalars...")
     for hx in sensors:
         vals=[]
-        print("Finding Base Scalar...")
         hx.set_reference_unit(1)
         for i in range(num_samples):
             vals.append(hx.get_weight(5))

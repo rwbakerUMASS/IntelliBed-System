@@ -18,7 +18,6 @@ class Firebase:
     self.db.child("window").child(index).child('class').set(classification)
   
   def addData(self,data):
-    timestamp=str(timestamp).replace(".","-")
     self.db.child("data").set(data)
     
 if __name__ == "__main__":
